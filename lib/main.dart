@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
+import 'package:flutter/rendering.dart';
 
 import './product_manager.dart';
 import './pages/auth.dart';
@@ -8,7 +8,7 @@ import './pages/product-admin.dart';
 import './pages/product.dart';
 
 main() {
-  // debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = true;
   // debugPaintPointersEnabled = true;
   runApp(MyApp());
 }
@@ -16,7 +16,6 @@ main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
