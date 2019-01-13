@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+// import 'package:flutter/rendering.dart';
 
-import './product_manager.dart';
 import './pages/auth.dart';
+import './pages/products_admin.dart';
 import './pages/products.dart';
-import './pages/product-admin.dart';
 import './pages/product.dart';
 
-main() {
-  debugPaintSizeEnabled = true;
+void main() {
+  // debugPaintSizeEnabled = true;
+  // debugPaintBaselinesEnabled = true;
   // debugPaintPointersEnabled = true;
   runApp(MyApp());
 }
@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _products.add(product);
     });
+    print(_products);
   }
 
   void _deleteProduct(int index) {
@@ -42,12 +43,14 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.deepOrange,
-          accentColor: Colors.deepPurple),
+          accentColor: Colors.deepPurple,
+          buttonColor: Colors.deepPurple),
       // home: AuthPage(),
       routes: {
         '/': (BuildContext context) => AuthPage(),
         '/products': (BuildContext context) => ProductsPage(_products),
-        '/admin': (BuildContext context) => Mpro(_addProduct, _deleteProduct),
+        '/admin': (BuildContext context) =>
+            ProductsAdminPage(_addProduct, _deleteProduct),
       },
       onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
@@ -58,7 +61,10 @@ class _MyAppState extends State<MyApp> {
           final int index = int.parse(pathElements[2]);
           return MaterialPageRoute<bool>(
             builder: (BuildContext context) => ProductPage(
-                _products[index]['title'], _products[index]['image']),
+                _products[index]['title'],
+                _products[index]['image'],
+                _products[index]['price'],
+                _products[index]['description']),
           );
         }
         return null;
